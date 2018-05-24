@@ -1,0 +1,2 @@
+# CurveFX
+Curverfever mit JavaFX
