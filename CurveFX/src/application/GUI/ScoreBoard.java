@@ -1,5 +1,8 @@
 package application.GUI;
 
-public class ScoreBoard {
+import javafx.scene.layout.Pane;
 
+public class ScoreBoard extends Pane{
+
+	
 }
