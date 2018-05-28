@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import application.GUI.DrawPane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,29 +15,33 @@ import javafx.scene.layout.Pane;
 public class Controller implements Initializable{
 
 	@FXML
-	Button startButton;
+	private Button startButton;
 	@FXML
-	Pane scoreBoard;
+	private Pane scoreBoard;
 	@FXML
-	Pane drawPane;
+	private DrawPane drawPane;
 	
-	Timer bew = new Timer();
+	private Timer timer = new Timer();
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	public void gameStart(ActionEvent e) {
 		startButton.setVisible(false);
-		bew.scheduleAtFixedRate(new TimerTask() {
+		drawPane.init();
+		drawPane.malen();
+		timer.scheduleAtFixedRate(new TimerTask() {
 			
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
-				
+				timerRun();
 			}
 		}, 0, 30);
+	}
+	
+	private void timerRun() {
+		
 	}
 }
