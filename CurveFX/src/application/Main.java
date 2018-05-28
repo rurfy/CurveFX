@@ -1,5 +1,6 @@
 package application;
 	
+import application.GUI.DrawPane;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -16,11 +17,9 @@ public class Main extends Application {
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("GUI/application.css").toExternalForm());
 			primaryStage.setScene(scene);
-			//primaryStage.setFullScreen(true);
 			Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
 			primaryStage.setHeight(screenSize.getHeight());
 			primaryStage.setWidth(screenSize.getWidth());
-			//primaryStage.setResizable(false);
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();

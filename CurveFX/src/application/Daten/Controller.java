@@ -8,8 +8,12 @@ import java.util.TimerTask;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 public class Controller implements Initializable{
 
