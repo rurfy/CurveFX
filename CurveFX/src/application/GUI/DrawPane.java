@@ -7,13 +7,17 @@ import javafx.scene.paint.Color;
 
 public class DrawPane extends Pane{
 	
-	Canvas canvas;
-	GraphicsContext gc;
-
-	public DrawPane() {
-		canvas = new Canvas(1000,1000);
+	private Canvas canvas;
+	private GraphicsContext gc;
+	
+	public void malen() {
+        gc.setFill(Color.BLACK);
+        gc.fillOval(100, 100, 100, 100);
+	}
+	
+	public void init() {
+		canvas = new Canvas(getWidth(), getHeight());
 		gc = canvas.getGraphicsContext2D();
-		gc.setFill(Color.BLACK);
-		gc.fillOval(500, 500, 300, 300);
+		getChildren().add(canvas);
 	}
 }

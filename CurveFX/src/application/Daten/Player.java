@@ -58,4 +58,8 @@ public class Player {
 	public void setSize(int size) {
 		this.size = size;
 	}
+	
+	public void move() {
+		
+	}
 }
