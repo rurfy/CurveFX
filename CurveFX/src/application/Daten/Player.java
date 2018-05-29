@@ -2,14 +2,26 @@ package application.Daten;
 
 public class Player {
 
-	private int size;
-	private String name;
-	private double speed;
-	private double angle;
+	private int size = 10; //Nur Beispielwerte
+	private String name = "";
+	private double speed = 1;
+	private double angle = 0;
+	private double turnRadius = 100;
+
+	private double posX = 500;
+	private double posY = 500;
 	
-	private double posX;
-	private double posY;
+	public Player() {
+		
+	}
 	
+	public double getTurnRadius() {
+		return turnRadius;
+	}
+
+	public void setTurnRadius(double turnRadius) {
+		this.turnRadius = turnRadius;
+	}
 	
 	public double getSpeed() {
 		return speed;
@@ -60,6 +72,23 @@ public class Player {
 	}
 	
 	public void move() {
-		
+
+		if (isLeft()) {
+			angle--;
+		}
+		if (isRight()) {
+			angle++;
+		}
+		posX += Math.sin(Math.toRadians(angle));
+		posY += Math.cos(Math.toRadians(angle));
 	}
+	
+	private boolean isLeft() {
+		return left;
+	}
+	
+	private boolean isRight() {
+		return right;
+	}
+
 }

@@ -21,7 +21,11 @@ public class Controller implements Initializable{
 	@FXML
 	private DrawPane drawPane;
 	
+	private Player player1 = new Player();
+	
 	private Timer timer = new Timer();
+	
+	private KeyHandler keyHandler;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -31,7 +35,6 @@ public class Controller implements Initializable{
 	public void gameStart(ActionEvent e) {
 		startButton.setVisible(false);
 		drawPane.init();
-		drawPane.malen();
 		timer.scheduleAtFixedRate(new TimerTask() {
 			
 			@Override
@@ -42,6 +45,7 @@ public class Controller implements Initializable{
 	}
 	
 	private void timerRun() {
-		
+		player1.move();
+		drawPane.kreisMalen(player1.getPosX(), player1.getPosY(), player1.getSize());
 	}
 }
