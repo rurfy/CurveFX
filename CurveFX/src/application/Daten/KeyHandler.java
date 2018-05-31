@@ -16,6 +16,8 @@ public class KeyHandler {
                 switch (event.getCode()) {
                     case LEFT:  setGoLeft(true); break;
                     case RIGHT: setGoRight(true); break;
+				default:
+					break;
                 }
             }
         });
@@ -26,6 +28,8 @@ public class KeyHandler {
                 switch (event.getCode()) {
                     case LEFT:  setGoLeft(false); break;
                     case RIGHT: setGoRight(false); break;
+				default:
+					break;
                 }
             }
         });

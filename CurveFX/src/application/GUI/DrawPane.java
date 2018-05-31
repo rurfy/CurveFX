@@ -13,8 +13,6 @@ public class DrawPane extends Pane{
 	public void kreisMalen(double posX, double posY, double size) {
         gc.setFill(Color.BLACK);
         gc.fillOval(posX, posY, size, size);
-        System.out.println(posX);
-        System.out.println(posY);
 	}
 	
 	public void init() {

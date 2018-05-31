@@ -1,6 +1,5 @@
 package application;
 	
-import application.Daten.KeyHandler;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -27,9 +26,6 @@ public class Main extends Application {
 			        System.exit(0);
 			    }
 			});
-			
-			KeyHandler keyHandler = new KeyHandler(scene);
-			
 			
 			Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
 			primaryStage.setHeight(screenSize.getHeight());
