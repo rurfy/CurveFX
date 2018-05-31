@@ -2,10 +2,10 @@ package application.Daten;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import application.GUI.DrawPane;
+
+import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,7 +21,11 @@ public class Controller implements Initializable{
 	@FXML
 	private DrawPane drawPane;
 	
-	private Timer timer = new Timer();
+	private Player player1;
+	
+	private AnimationTimer timer;
+	
+	private KeyHandler keyHandler;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -31,17 +35,25 @@ public class Controller implements Initializable{
 	public void gameStart(ActionEvent e) {
 		startButton.setVisible(false);
 		drawPane.init();
-		drawPane.malen();
-		timer.scheduleAtFixedRate(new TimerTask() {
+		addKeyListener();
+		timer = new AnimationTimer() {
 			
 			@Override
-			public void run() {
+			public void handle(long now) {
+				// TODO Auto-generated method stub
 				timerRun();
 			}
-		}, 0, 30);
+		};
+		timer.start();
+	}
+	
+	private void addKeyListener() {
+		keyHandler = new KeyHandler(drawPane.getScene());
+		player1 = new Player(keyHandler);
 	}
 	
 	private void timerRun() {
-		
+		player1.move();
+		drawPane.kreisMalen(player1.getPosX(), player1.getPosY(), player1.getSize());
 	}
 }

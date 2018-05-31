@@ -10,9 +10,9 @@ public class DrawPane extends Pane{
 	private Canvas canvas;
 	private GraphicsContext gc;
 	
-	public void malen() {
+	public void kreisMalen(double posX, double posY, double size) {
         gc.setFill(Color.BLACK);
-        gc.fillOval(100, 100, 100, 100);
+        gc.fillOval(posX, posY, size, size);
 	}
 	
 	public void init() {
