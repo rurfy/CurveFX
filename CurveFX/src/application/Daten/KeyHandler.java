@@ -8,8 +8,9 @@ public class KeyHandler {
 	
 	private boolean goLeft = false;
 	private boolean goRight = false;
-
+	
 	public KeyHandler(Scene scene) {
+		
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {

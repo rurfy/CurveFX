@@ -1,5 +1,7 @@
 package application.Daten;
 
+import javafx.scene.paint.Color;
+
 public class Player {
 
 	private int size = 10; // Nur Beispielwerte
@@ -9,6 +11,8 @@ public class Player {
 	private double intervall = 1;
 	private double turnRadius = 2;
 
+	private Color color = Color.BLUE;
+	
 	private double posX = 500;
 	private double posY = 500;
 
@@ -76,16 +80,24 @@ public class Player {
 
 	public void move() {
 
-		for (int i = 0; i < 1; i++) {
+		for (int i = 0; i < speed; i++) {
 			if (keyHandler.isGoLeft()) {
 				angle += intervall;
 			}
 			if (keyHandler.isGoRight()) {
 				angle -= intervall;
 			}
-			posX += 2*Math.sin(Math.toRadians(angle));
-			posY += 2*Math.cos(Math.toRadians(angle));
+			posX += Math.sin(Math.toRadians(angle));
+			posY += Math.cos(Math.toRadians(angle));
 		}
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
 	}
 
 }
