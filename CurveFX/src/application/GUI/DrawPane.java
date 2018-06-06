@@ -1,9 +1,14 @@
 package application.GUI;
 
+import java.util.Collection;
+
 import application.Daten.Player;
 import javafx.geometry.Point2D;
+import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelFormat;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Pane;
@@ -27,6 +32,7 @@ public class DrawPane extends Pane{
 	
 	public void init() {
 		img = new WritableImage((int) getWidth(), (int) getHeight());
+		getChildren().add(new ImageView(img));
 		//canvas = new Canvas(getWidth(), getHeight());
 		//gc = canvas.getGraphicsContext2D();
 		//getChildren().addAll(img);
@@ -41,12 +47,13 @@ public class DrawPane extends Pane{
 	    Point2D center = new Point2D((double) width / 2, (double) height / 2);
 	    double rsmall = 0.8 * width / 2;
 	    double rbig = (double) width / 2;
+
 	    for (int y = 0; y < height; y++) {
 	        for (int x = 0; x < width; x++) {
 	            double dx = x - center.getX();
 	            double dy = y - center.getY();
 	            double distance = Math.sqrt((dx * dx) + (dy * dy));
-	            if (distance > rsmall && distance < rbig) {
+	            if (distance < rbig) {
 	                pixelWriter.setColor(x, y, Color.RED);
 	            }
 	        }
