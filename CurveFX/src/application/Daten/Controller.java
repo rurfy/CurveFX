@@ -36,7 +36,6 @@ public class Controller implements Initializable{
 		startButton.setVisible(false);
 		drawPane.init();
 		objekteErstellen();
-		drawPane.getHuesCircle(200,200); 
 		timer = new AnimationTimer() {
 			
 			@Override
@@ -55,6 +54,7 @@ public class Controller implements Initializable{
 	
 	private void timerRun() {
 		player1.move();
+		drawPane.kreisZeichnen(player1); 
 		//drawPane.kreisMalen(player1);
 	}
 }
