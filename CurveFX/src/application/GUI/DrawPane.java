@@ -34,34 +34,48 @@ public class DrawPane extends Pane {
 	}
 
 	public void kreisZeichnen(Player player) {
-		PixelWriter pixelWriter = img.getPixelWriter();
-		PixelReader pixelReader = img.getPixelReader();
-		Point2D center = new Point2D((double) player.getSize() / 2, (double) player.getSize() / 2);
-		for (int y = 0; y < player.getSize(); y++) {
-			for (int x = 0; x < player.getSize(); x++) {
-				double dx = x - center.getX();
-				double dy = y - center.getY();
-				double distance = Math.sqrt((dx * dx) + (dy * dy));
-				if (distance <= player.getSize() / 2) {
-					pixelWriter.setColor(x + (int) player.getPosX(), y + (int) player.getPosY(), player.getColor());
+        PixelWriter pixelWriter = img.getPixelWriter();
+        int x0 = (int) player.getPosX();
+        int y0 = (int) player.getPosY();
+        int radius = player.getSize()/2;
+        int discriminant = (3 - radius<<2)>>2;
+        int i = 0, j = radius;
+        while(i<=j){
+            geradeLinieZeichnen(pixelWriter, player.getColor(), x0+i, y0-j, x0-i, y0-j);
+            geradeLinieZeichnen(pixelWriter, player.getColor(), x0+j, y0-i, x0-j, y0-i);
+            geradeLinieZeichnen(pixelWriter, player.getColor(), x0+i, y0+j, x0-i, y0+j);
+            geradeLinieZeichnen(pixelWriter, player.getColor(), x0+j, y0+i, x0-j, y0+i);
+            i++;
+            if(discriminant<0) {
+                discriminant += (i<<1) + 1;
+            }else {
+                j--;
+                discriminant += (1 + i - j)<<1;
+            }
+        }
+    }
 
-				} else if (distance > player.getSize() / 2 && distance <= player.getSize() / 2 + 0.2 && pixelReader.getColor(x + (int) player.getPosX(), y + (int) player.getPosY()) != Color.BLUE) {
-					pixelWriter.setColor(x + (int) player.getPosX(), y + (int) player.getPosY(), new Color(player.getColor().getRed(),
-							player.getColor().getGreen(), player.getColor().getBlue(), player.getColor().getOpacity() - 0.2));
-
-				} else if (distance > player.getSize() / 2 + 0.2 && distance <= player.getSize() / 2 + 0.4 && pixelReader.getColor(x + (int) player.getPosX(), y + (int) player.getPosY()) != Color.BLUE) {
-					pixelWriter.setColor(x + (int) player.getPosX(), y + (int) player.getPosY(), new Color(player.getColor().getRed(),
-							player.getColor().getGreen(), player.getColor().getBlue(), player.getColor().getOpacity() - 0.4));
-
-				} else if (distance > player.getSize() / 2 + 0.4 && distance <= player.getSize() / 2 + 0.6 && pixelReader.getColor(x + (int) player.getPosX(), y + (int) player.getPosY()) != Color.BLUE) {
-					pixelWriter.setColor(x + (int) player.getPosX(), y + (int) player.getPosY(), new Color(player.getColor().getRed(),
-							player.getColor().getGreen(), player.getColor().getBlue(), player.getColor().getOpacity() - 0.6));
-
-				} else if (distance > player.getSize() / 2 + 0.6 && distance <= player.getSize() / 2 + 0.8 && pixelReader.getColor(x + (int) player.getPosX(), y + (int) player.getPosY()) != Color.BLUE) {
-					pixelWriter.setColor(x + (int) player.getPosX(), y + (int) player.getPosY(), new Color(player.getColor().getRed(),
-							player.getColor().getGreen(), player.getColor().getBlue(), player.getColor().getOpacity() - 0.8));
-				}
-			}
-		}
-	}
+    public void geradeLinieZeichnen(PixelWriter pixelWriter, Color color, int x1, int y1, int x2, int y2){
+        if(x1==x2) {
+            if(y1>y2) {
+                for(int i=y2;i<=y1;i++) {
+                    pixelWriter.setColor(x1, i, color);
+                }
+            } else {
+                for(int i=y1;i<=y2;i++) {
+                    pixelWriter.setColor(x1, i, color);
+                }
+            }
+        } else if(y1==y2) {
+            if(x1>x2) {
+                for(int i=x2;i<=x1;i++) {
+                    pixelWriter.setColor(i, y1, color);
+                }
+            } else {
+                for(int i=x1;i<=x2;i++) {
+                    pixelWriter.setColor(i, y1, color);
+                }
+            }
+        }
+    }
 }
